@@ -1,0 +1,14 @@
+tika
+gspread-public
+pandas
+nltk
+gitpython
+stix2
+psycopg2-binary
+ioc_finder
+regex
+bs4
+deeppavlov
+tensorflow #tensorflow-cpu
+
+

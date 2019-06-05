@@ -1,4 +1,5 @@
-tika
+python-magic
+pypdf2
 gspread-public
 pandas
 nltk
@@ -8,6 +9,7 @@ psycopg2-binary
 ioc_finder
 regex
 bs4
+msticpy
 deeppavlov
 tensorflow #tensorflow-cpu
 

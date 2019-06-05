@@ -55,7 +55,7 @@ def parse_document(document_path, keywords=[], report_title=None):
 
     # if ('content' not in parsedDocument):
     #     return None
-    if (raw_text is None):
+    if (raw_text is None) or len(raw_text)==0:
         return None
     raw_text = raw_text.lower()
     remove_punct_map = dict.fromkeys(map(ord, punctuation))

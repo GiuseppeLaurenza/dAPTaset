@@ -1,7 +1,5 @@
 import configparser
 
-from tika.tika import checkTikaServer
-
 from parser.APTGroupsOperationsParser import APTGroupsOperationsParser
 from parser.APTNotesParser import APTNotesParser
 from parser.MalshareParser import MalshareParser
@@ -14,7 +12,6 @@ from utilities.DatabaseWrapper import DatabaseWrapper
 from utilities.Updater import Updater
 
 if __name__ == '__main__':
-    checkTikaServer()
     config = configparser.ConfigParser()
     config.read('config.ini')
     db = DatabaseWrapper(config._sections["Database"])

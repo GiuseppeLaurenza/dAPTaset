@@ -2,39 +2,65 @@ import re
 from string import punctuation
 from unicodedata import normalize
 
+import magic
 import pandas as pd
+# from utilities import iocextract
+from PyPDF2 import PdfFileReader
+from bs4 import BeautifulSoup
 from ioc_finder import find_iocs
-from tika import parser
-
-from utilities import iocextract
+from msticpy.sectools import IoCExtract
 
 
 def parse_document(document_path, keywords=[], report_title=None):
-    parsedDocument = parser.from_file(document_path)
+    file_type = magic.from_file(document_path).lower()
     keywords_argument = []
     title = []
-    for elem in parsedDocument.keys():
-        if isinstance(parsedDocument[elem], dict):
-            for key in parsedDocument[elem]:
-                if ("key" in key.lower()):
-                    keywords_argument = parsedDocument[elem][key]
-                if ("title" in key.lower()):
-                    title = parsedDocument[elem][key]
-                if isinstance(parsedDocument[elem][key], dict):
-                    for key2 in parsedDocument[elem][key]:
-                        if ("key" in key2.lower()):
-                            keywords_argument = parsedDocument[elem][key][key2]
+    if ("pdf" in file_type):
+        with open(document_path, "rb") as f:
+            pdf = PdfFileReader(f)
+            parsedDocument = pdf.getDocumentInfo()
+            number_of_pages = pdf.getNumPages()
+            raw_text = ""
+            for i in range(0, number_of_pages):
+                current_page = pdf.getPage(i)
+                current_text = current_page.extractText()
+                raw_text = raw_text + current_text
+            for elem in parsedDocument.keys():
+                if isinstance(parsedDocument[elem], dict):
+                    for key in parsedDocument[elem]:
+                        if ("key" in key.lower()):
+                            keywords_argument = parsedDocument[elem][key]
                         if ("title" in key.lower()):
-                            title = parsedDocument[elem][key][key2]
+                            title = parsedDocument[elem][key]
+                        if isinstance(parsedDocument[elem][key], dict):
+                            for key2 in parsedDocument[elem][key]:
+                                if ("key" in key2.lower()):
+                                    keywords_argument = parsedDocument[elem][key][key2]
+                                if ("title" in key.lower()):
+                                    title = parsedDocument[elem][key][key2]
+    elif ("html" in file_type):
+        with open(document_path, "rb") as html:
+            tree = BeautifulSoup(html, 'lxml')
+            body = tree.body
+            if body is None:
+                return None
+            for tag in body.select('script'):
+                tag.decompose()
+            for tag in body.select('style'):
+                tag.decompose()
+            raw_text = body.get_text(separator='\n')
+            title = tree.title.string
+    else:
+        return None
 
-    if ('content' not in parsedDocument):
+    # if ('content' not in parsedDocument):
+    #     return None
+    if (raw_text is None):
         return None
-    if (parsedDocument['content'] is None):
-        return None
-    raw_text = parsedDocument['content'].lower()
+    raw_text = raw_text.lower()
     remove_punct_map = dict.fromkeys(map(ord, punctuation))
     text = raw_text.translate(remove_punct_map)
-    text = text.replace("\n\n", " ").replace("\n", "").replace("•", "")
+    text = text.replace("\n\n", " ").replace("\n", " ").replace("•", "").replace("  ", " ")
     result = pd.DataFrame(columns={"md5", "sha1", "sha256", "sha512"})
     keywords_list = []
     keywords_title = []
@@ -48,8 +74,11 @@ def parse_document(document_path, keywords=[], report_title=None):
     for elem in keywords_argument:
         if (elem in keywords):
             keywords_title.append(elem)
+    ioc_extractor = IoCExtract()
+    ioc_extractor.add_ioc_type(ioc_type="cves", ioc_regex="CVE-\d{4}-\d{4,7}")
+    ioc_extractor.add_ioc_type(ioc_type="email", ioc_regex=r'[\w\.-]+@[\w\.-]+(\.[\w]+)+')
 
-    iocextract_result = iocextract.extract_iocs_dict(raw_text, refang=True, strip=True)
+    iocextract_result = ioc_extractor.extract(raw_text)
     url_list = set(
         [normalize('NFKD', x).encode('ASCII', 'ignore').decode('ASCII', 'ignore') for x in iocextract_result["url"] if
          not normalize('NFKD', x).encode('ASCII', 'ignore').endswith(b"-")])

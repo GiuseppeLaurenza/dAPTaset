@@ -97,6 +97,10 @@ class MitreParser:
         techniques_df = techniques_df.rename(index=str, columns={"x_mitre_permissions_required": "permissions_required",
                                                                  "x_mitre_platforms": "platforms", "id": "mitre_id",
                                                                  "kill_chain_phases": "tactics"})
+        column_set = set(techniques_df.columns.values)
+        for i in self.columns_list["techniques"]:
+            column_set.add(i)
+        techniques_df = techniques_df.reindex(columns=list(column_set), fill_value="")
         return techniques_df[self.columns_list["techniques"]]
 
     def get_group_by_alias(self, alias):

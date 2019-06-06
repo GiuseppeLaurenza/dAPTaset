@@ -94,7 +94,7 @@ class Updater:
                 current_country = country_elem[1]
                 self.db.insert_organization(current_country["name"].lower())
                 self.db.insert_apt_cos(mitre_aptname, current_country["name"].lower(), "suspected state sponsor")
-            self.db.insert_organization(current_row["cfr-suspected-state-sponsor"].lower())
+            self.db.insert_organization(str(current_row["cfr-suspected-state-sponsor"]).lower())
             self.db.insert_apt_cos(mitre_aptname, current_row["cfr-suspected-state-sponsor"], "suspected state sponsor")
             for suspected_victim in current_row["cfr-suspected-victims"]:
                 self.db.insert_apt_cos(mitre_aptname, suspected_victim,

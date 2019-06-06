@@ -4,7 +4,6 @@ import pandas as pd
 
 from parser.documentParser import parse_document
 from utilities.Downloader import Downloader
-from utilities.deepLearningModel import deepLearningModel
 from utilities.string_functions import clean_string
 
 
@@ -24,10 +23,10 @@ class Updater:
         self.country_df = self.country_parser.df
         self.country_parser.get_alias_set()
         self.country_alias = self.country_parser.alias
-        self.deepLM = deepLearningModel()
-        self.model = self.deepLM.model
-        # self.deepLM = None
-        # self.model = None
+        # self.deepLM = deepLearningModel()
+        # self.model = self.deepLM.model
+        self.deepLM = None
+        self.model = None
         self.galaxy_parser = galaxy_parser
 
 
@@ -39,7 +38,10 @@ class Updater:
             print("Impossible to save report from " + current_url)
             return None
         keywords_set = self.db.get_keywords()
-        report_data = parse_document(file_path, keywords_set)
+        try:
+            report_data = parse_document(file_path, keywords_set)
+        except Exception as e:
+            return None
         if (report_data is None):
             self.db.insert_unknown_report(report_hash, description, current_url, source)
             return None
@@ -110,8 +112,8 @@ class Updater:
         keywords_set = self.db.get_keywords()
         for row in group_df.iterrows():
             current_row = row[1]
-            if (current_row["hash"] in old_reports):
-                continue
+            # if (current_row["hash"] in old_reports):
+            #     continue
             cleaned_aptname = clean_string(current_row["name"])
             self.db.insert_apt(cleaned_aptname)
             self.db.insert_alias(cleaned_aptname, cleaned_aptname)
@@ -216,7 +218,11 @@ class Updater:
             report_path = self.downloader.download_from_appbox(report_link, report_filename)
             if report_path is None:
                 continue
-            report_data = parse_document(report_path, keywords_set, report_title)
+            try:
+                report_data = parse_document(report_path, keywords_set, report_title)
+            except Exception as e:
+                self.db.insert_unknown_report(report_sha1, "", report_link, "APTNotes")
+                continue
             if (report_data is None):
                 self.db.insert_unknown_report(report_sha1, "", report_link, "APTNotes")
                 continue

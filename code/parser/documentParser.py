@@ -23,7 +23,10 @@ def parse_document(document_path, keywords=[], report_title=None):
             raw_text = ""
             for i in range(0, number_of_pages):
                 current_page = pdf.getPage(i)
-                current_text = current_page.extractText()
+                try:
+                    current_text = current_page.extractText()
+                except Exception as e:
+                    continue
                 raw_text = raw_text + current_text
             for elem in parsedDocument.keys():
                 if isinstance(parsedDocument[elem], dict):

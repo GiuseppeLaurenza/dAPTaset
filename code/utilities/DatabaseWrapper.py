@@ -299,7 +299,8 @@ class DatabaseWrapper:
         self.cursor.execute(full_query)
         self.connection.commit()
 
-    def insert_apt_cos(self, apt_name, cos_name, relation=None):
+    def insert_apt_cos(self, apt_name, cos_list, relation=None):
+        cos_name = str(cos_list)
         if relation is None:
             base_query = """ INSERT INTO "APT_COS" ("apt_name","country_organization_sector") VALUES (%s,%s)
                 ON CONFLICT DO NOTHING;"""

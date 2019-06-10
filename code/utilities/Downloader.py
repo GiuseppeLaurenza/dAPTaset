@@ -1,6 +1,7 @@
 import hashlib
 import json
 import os
+import uuid
 from urllib.parse import urlparse
 
 import requests
@@ -50,6 +51,9 @@ class Downloader():
             if filename == "":
                 filename = url_path.netloc
         destination = self.download_folder + str(filename)
+        if destination == self.download_folder:
+            filename = str(uuid.uuid4())
+            destination = self.download_folder + str(filename)
         print("Download Documents from " + document_url + " to " + destination)
         headers = {'Content-type': 'application/json',
                    'User-Agent': 'Mozilla/5.0 (X11; Linux i686; rv:64.0) Gecko/20100101 Firefox/64.0'}

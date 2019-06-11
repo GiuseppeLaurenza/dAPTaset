@@ -51,7 +51,7 @@ class Downloader():
             if filename == "":
                 filename = url_path.netloc
         destination = self.download_folder + str(filename)
-        if destination == self.download_folder:
+        if destination == self.download_folder or destination == "/tmp/.":
             filename = str(uuid.uuid4())
             destination = self.download_folder + str(filename)
         print("Download Documents from " + document_url + " to " + destination)

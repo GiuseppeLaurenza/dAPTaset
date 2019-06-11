@@ -4,6 +4,7 @@ import pandas as pd
 
 from parser.documentParser import parse_document
 from utilities.Downloader import Downloader
+from utilities.deepLearningModel import deepLearningModel
 from utilities.string_functions import clean_string
 
 
@@ -23,10 +24,10 @@ class Updater:
         self.country_df = self.country_parser.df
         self.country_parser.get_alias_set()
         self.country_alias = self.country_parser.alias
-        # self.deepLM = deepLearningModel()
-        # self.model = self.deepLM.model
-        self.deepLM = None
-        self.model = None
+        self.deepLM = deepLearningModel()
+        self.model = self.deepLM.model
+        # self.deepLM = None
+        # self.model = None
         self.galaxy_parser = galaxy_parser
 
 

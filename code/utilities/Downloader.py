@@ -43,7 +43,7 @@ class Downloader():
             return None
 
     def download_document(self, document_url, filename=None):
-        if document_url == "https://attack.mitre.org"
+        if document_url == "https://attack.mitre.org":
             return {"path": document_url, "hash": None}
         if (filename is None):
             url_path = urlparse(document_url)

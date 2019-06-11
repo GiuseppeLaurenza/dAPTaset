@@ -112,8 +112,8 @@ class Updater:
         keywords_set = self.db.get_keywords()
         for row in group_df.iterrows():
             current_row = row[1]
-            # if (current_row["hash"] in old_reports):
-            #     continue
+            if (current_row["hash"] in old_reports):
+                continue
             cleaned_aptname = clean_string(current_row["name"])
             self.db.insert_apt(cleaned_aptname)
             self.db.insert_alias(cleaned_aptname, cleaned_aptname)

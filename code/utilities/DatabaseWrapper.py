@@ -277,7 +277,7 @@ class DatabaseWrapper:
     def insert_report_cve_relation(self, report_id, cve):
         sql = """INSERT INTO "REPORT_CVE" ("report_id", "cve") VALUES (%s,%s)
                         ON CONFLICT DO NOTHING;"""
-        full_query = self.cursor.mogrify(sql, (report_id, cve))
+        full_query = self.cursor.mogrify(sql, (report_id, cve.upper()))
         self.cursor.execute(full_query)
 
     def get_networks(self):

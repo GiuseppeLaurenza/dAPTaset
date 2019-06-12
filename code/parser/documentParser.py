@@ -87,16 +87,20 @@ def parse_document(document_path, keywords=[], report_title=None):
          not normalize('NFKD', x).encode('ASCII', 'ignore').endswith(b"-")])
     ip_list = set([x for x in iocextract_result["ip"] if not x.startswith(('192.168.', '10.', '172.16.', '172.31.'))])
     email = set(iocextract_result["email"])
-    for elem in ([{"md5": hash, "sha1": None, "sha256": None, "sha512": None} for hash in iocextract_result["md5"]]):
+    for elem in (
+    [{"md5": hash, "sha1": None, "sha256": None, "sha512": None} for hash in iocextract_result["md5_hash"]]):
         result = result.append(elem, ignore_index=True)
 
-    for elem in ([{"md5": None, "sha1": hash, "sha256": None, "sha512": None} for hash in iocextract_result["sha1"]]):
+    for elem in (
+    [{"md5": None, "sha1": hash, "sha256": None, "sha512": None} for hash in iocextract_result["sha1_hash"]]):
         result = result.append(elem, ignore_index=True)
 
-    for elem in ([{"md5": None, "sha1": None, "sha256": hash, "sha512": None} for hash in iocextract_result["sha256"]]):
+    for elem in (
+    [{"md5": None, "sha1": None, "sha256": hash, "sha512": None} for hash in iocextract_result["sha256_hash"]]):
         result = result.append(elem, ignore_index=True)
 
-    for elem in ([{"md5": None, "sha1": None, "sha256": None, "sha512": hash} for hash in iocextract_result["sha512"]]):
+    for elem in (
+    [{"md5": None, "sha1": None, "sha256": None, "sha512": hash} for hash in iocextract_result["sha512_hash"]]):
         result = result.append(elem, ignore_index=True)
 
     cve_list = find_iocs(raw_text).get("cves")

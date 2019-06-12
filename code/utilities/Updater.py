@@ -245,7 +245,7 @@ class Updater:
             for current_type in ["url", "email", "ip"]:
                 for address in report_data[current_type]:
                     self.db.insert_network(address, current_type)
-                    self.insert_report_network_relation(current_report_id, address)
+                    self.db.insert_report_network_relation(current_report_id, address)
                 self.db.connection.commit()
 
             for cve in report_data["cve"]:

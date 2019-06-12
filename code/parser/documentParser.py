@@ -7,7 +7,7 @@ import pandas as pd
 # from utilities import iocextract
 from PyPDF2 import PdfFileReader
 from bs4 import BeautifulSoup
-from ioc_finder import find_iocs
+# from ioc_finder import find_iocs
 from msticpy.sectools import IoCExtract
 
 
@@ -103,7 +103,7 @@ def parse_document(document_path, keywords=[], report_title=None):
     [{"md5": None, "sha1": None, "sha256": None, "sha512": hash} for hash in iocextract_result["sha512_hash"]]):
         result = result.append(elem, ignore_index=True)
 
-    cve_list = find_iocs(raw_text).get("cves")
+    cve_list = set(iocextract_result["cves"])
 
     if len(keywords_title) == 0:
         for elem in keywords:

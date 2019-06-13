@@ -1,3 +1,4 @@
+import hashlib
 import json
 
 import pandas as pd
@@ -255,16 +256,18 @@ class DatabaseWrapper:
     def insert_network(self, address, type, role=None):
         if not role:
             role = "unknown"
-        sql = """INSERT INTO "NETWORK" ("address","type","role") VALUES (%s,%s,%s)
+        address_hash = hashlib.sha1(address.lower().encode('utf-8')).hexdigest()
+        sql = """INSERT INTO "NETWORK" ("address_hash","address","type","role") VALUES (%s,%s,%s,%s)
                 ON CONFLICT DO NOTHING;"""
-        full_query = self.cursor.mogrify(sql, (address.lower(), type.lower(), role.lower()))
+        full_query = self.cursor.mogrify(sql, (address_hash, address.lower(), type.lower(), role.lower()))
         self.cursor.execute(full_query)
         self.connection.commit()
 
     def insert_report_network_relation(self, report_id, address):
-        sql = """INSERT INTO "REPORT_NETWORK"("report_id","address") VALUES (%s,%s)
+        address_hash = hashlib.sha1(address.lower().encode('utf-8')).hexdigest()
+        sql = """INSERT INTO "REPORT_NETWORK"("report_id","address_hash") VALUES (%s,%s)
                 ON CONFLICT DO NOTHING;"""
-        full_query = self.cursor.mogrify(sql, (report_id, address.lower()))
+        full_query = self.cursor.mogrify(sql, (report_id, address_hash))
         self.cursor.execute(full_query)
 
     def insert_cve(self, cve, year, affected_products):

@@ -110,6 +110,9 @@ class DatabaseWrapper:
         return result[0]
 
     def update_sample(self, hashes):
+        if isinstance(hashes, pd.DataFrame):
+            if hashes.empty:
+                return
         base_query = """SELECT * FROM "SAMPLES" WHERE"""
         result_list = []
         for key in hashes:
@@ -118,8 +121,12 @@ class DatabaseWrapper:
             if "•" in hashes[key]:
                 hashes[key] = hashes[key].replace("•", "")
             partial_query = base_query + """ \"""" + key + """\"=%s"""
-            full_query = self.cursor.mogrify(partial_query, [hashes[key].lower()])
-            self.cursor.execute(full_query)
+            try:
+                full_query = self.cursor.mogrify(partial_query, [hashes[key].lower()])
+                self.cursor.execute(full_query)
+            except Exception as e:
+                print(hashes)
+                print(str(e))
             result = self.cursor.fetchall()
             for elem in result:
                 result_list.append(elem)

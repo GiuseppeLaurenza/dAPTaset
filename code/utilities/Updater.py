@@ -275,11 +275,11 @@ class Updater:
         for current_elem in selected_df.iterrows():
             current_row = current_elem[1]
             current_name = current_row["software"]
-            print(current_name)
+            # print(current_name)
             dict_list = self.ms_parser.search_by_name(current_name, True)
             for elem in dict_list:
-                print(elem)
-                labels = self.vt_parser.search_by_hash(elem["md5"], to_file=True, all_info=True)
+                # print(elem)
+                labels = self.vt_parser.get_report(elem["md5"], query_type="hash", to_file=True, all_info=True)
                 if (current_name in str(labels) or clean_string(current_name) in str(labels)):
                     sample_id = self.db.insert_sample(
                         {"md5": elem["md5"], "sha256": elem["sha256"], "sha1": elem["sha1"], "sha512": None})

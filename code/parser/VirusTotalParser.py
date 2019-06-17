@@ -1,3 +1,4 @@
+import errno
 import hashlib
 import json
 import os
@@ -11,6 +12,13 @@ class VirusTotalParser:
         self.apikey = apikey
         self.url = url
         self.temp = temp_folder + "vt_result/"
+        try:
+            os.makedirs(self.temp)
+        except OSError as exc:  # Python >2.5
+            if exc.errno == errno.EEXIST and os.path.isdir(self.temp):
+                pass
+            else:
+                raise
 
     def get_report(self, query, query_type, to_file=False, all_info=False):
         if query_type == "ip":

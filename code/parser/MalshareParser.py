@@ -1,3 +1,4 @@
+import errno
 import json
 import os
 import pickle
@@ -10,6 +11,13 @@ class MalshareParser:
     def __init__(self, key, url, temp_folder):
         self.apikey = key
         self.temp = temp_folder + "ms_result/"
+        try:
+            os.makedirs(self.temp)
+        except OSError as exc:  # Python >2.5
+            if exc.errno == errno.EEXIST and os.path.isdir(self.temp):
+                pass
+            else:
+                raise
         self.url = url
 
     def search_by_name(self, software_name, to_file=False):

@@ -263,8 +263,11 @@ class Updater:
                 continue
             for hash_value in elem[1]:
                 if hash_value is not None:
-                    hashes = self.vt_parser.get_report(hash_value, "file", True)
-                    self.db.update_sample(hashes)
+                    try:
+                        hashes = self.vt_parser.get_report(hash_value, "file", True)
+                        self.db.update_sample(hashes)
+                    except Exception as e:
+                        print(e)
 
     def software_search(self, malware=False):
         software_df = self.db.get_software()
@@ -279,21 +282,24 @@ class Updater:
             dict_list = self.ms_parser.search_by_name(current_name, True)
             for elem in dict_list:
                 # print(elem)
-                labels = self.vt_parser.get_report(elem["md5"], query_type="hash", to_file=True, all_info=True)
-                if (current_name in str(labels) or clean_string(current_name) in str(labels)):
-                    sample_id = self.db.insert_sample(
-                        {"md5": elem["md5"], "sha256": elem["sha256"], "sha1": elem["sha1"], "sha512": None})
-                    self.db.insert_sample_report_relation(sample_id, current_row["report_id"])
+                try:
+                    labels = self.vt_parser.get_report(elem["md5"], query_type="hash", to_file=True, all_info=True)
+                    if (current_name in str(labels) or clean_string(current_name) in str(labels)):
+                        sample_id = self.db.insert_sample(
+                            {"md5": elem["md5"], "sha256": elem["sha256"], "sha1": elem["sha1"], "sha512": None})
+                        self.db.insert_sample_report_relation(sample_id, current_row["report_id"])
+                except Exception as e:
+                    print(str(e))
             self.db.connection.commit()
 
     def clean_network(self):
         network_df = self.db.get_networks()
         for current_elem in network_df.iterrows():
-            row = current_elem[1]
-            result = self.vt_parser.get_report(row["address"], row["type"], True, True)
-            if "url" in row["type"]:
-                continue
             try:
+                row = current_elem[1]
+                result = self.vt_parser.get_report(row["address"], row["type"], True, True)
+                if "url" in row["type"]:
+                    continue
                 role = []
                 for elem in result[(result["detected"] != False) & (result["detected"] != "clean site")].iterrows():
                     site_name = elem[0]
@@ -302,4 +308,4 @@ class Updater:
                 if len(role) > 0:
                     self.db.update_network_role(row["address"], role)
             except Exception as e:
-                print(result)
+                print(e)

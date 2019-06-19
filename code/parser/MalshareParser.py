@@ -39,6 +39,7 @@ class MalshareParser:
                         print(x)
                         continue
             if (to_file):
+                os.makedirs(os.path.dirname(filepath), exist_ok=True)
                 with open(filepath, "wb") as outputfile:
                     pickle.dump(dict_list, outputfile)
         return dict_list

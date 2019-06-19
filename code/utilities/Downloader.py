@@ -72,6 +72,6 @@ class Downloader():
                 buf = afile.read()
                 hasher.update(buf)
             return {"path": destination, "hash": hasher.hexdigest()}
-        except requests.exceptions.ConnectionError as e:
+        except Exception as e:
             return {"path": destination, "hash": None}
 

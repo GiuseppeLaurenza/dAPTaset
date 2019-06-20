@@ -85,7 +85,14 @@ def parse_document(document_path, keywords=[], report_title=None):
     url_list = set(
         [normalize('NFKD', x).encode('ASCII', 'ignore').decode('ASCII', 'ignore') for x in iocextract_result["url"] if
          not normalize('NFKD', x).encode('ASCII', 'ignore').endswith(b"-")])
-    ip_list = set([x for x in iocextract_result["ip"] if not x.startswith(('192.168.', '10.', '172.16.', '172.31.'))])
+    ip_list = []
+    for key in iocextract_result:
+        if "ip" in key:
+            for x in iocextract_result[key]:
+                if not x.startswith(('192.168.', '10.', '172.16.', '172.31.')):
+                    ip_list.append(x)
+    # ip_list = set([x for x in iocextract_result["ipv4"] if not x.startswith(('192.168.', '10.', '172.16.', '172.31.'))])
+    ip_list = set(ip_list)
     email = set(iocextract_result["email"])
     for elem in (
     [{"md5": hash, "sha1": None, "sha256": None, "sha512": None} for hash in iocextract_result["md5_hash"]]):

@@ -109,7 +109,7 @@ This tables are used to store temporary data that will be used by other function
 - ***software*** (*text*, *not null*) is a string containing the software name.
 - **is_tool** (*bool*, *not null*) is a flag to distinguish between malware and tool groups.
 - **report_id** (*integer*, *not null*, FK to [*REPORTS.report_id*](###REPORTS)) contains the identificaiton of the report in which the software name is found.
-### UNKNOWN_REPORTS
+### UNKNOWN_REPORT
 This table tracks the parsed reports which cannot be linked to any of the APTs currently stored in database
 - ***report_id*** (*integer*, *not null*) is a numerical sequence to identify a record.
 - **hash** (*text*, *unique*) is the SHA-1 of the report object, computed from parsed text or file object, depending to the report type.

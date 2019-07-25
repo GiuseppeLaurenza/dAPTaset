@@ -1,0 +1,174 @@
+name,permissions_required,platforms,mitre_id,created,last_update,tactics
+Spearphishing Attachment,"","{Windows,macOS,Linux}",attack-pattern--6aac77c4-eaf2-4366-8c13-ce50ab951f38,2019-07-12 13:46:48.99219+00,2019-07-12 13:46:48.99219+00,{initial-access}
+PowerShell,"{User,Administrator}",{Windows},attack-pattern--f4882e23-8aa7-4b12-b28a-b349c12ee9e0,2019-07-12 13:46:49.0131+00,2019-07-12 13:46:49.0131+00,{execution}
+Scripting,{User},"{Linux,macOS,Windows}",attack-pattern--7fd87010-3a00-4da3-b905-410525e8ec44,2019-07-12 13:46:49.046406+00,2019-07-12 13:46:49.046406+00,"{defense-evasion,execution}"
+User Execution,{User},"{Linux,Windows,macOS}",attack-pattern--8c32eb4d-805f-4fc5-bf60-c4d476c131b5,2019-07-12 13:46:49.054698+00,2019-07-12 13:46:49.054698+00,{execution}
+Exploitation for Client Execution,"","{Linux,Windows,macOS}",attack-pattern--be2dcee9-a7a7-4e38-afd6-21b31ecc3d63,2019-07-12 13:46:49.075022+00,2019-07-12 13:46:49.075022+00,{execution}
+Obfuscated Files or Information,"","{Linux,macOS,Windows}",attack-pattern--b3d682b6-98f2-4fb0-aa3b-b4df007ca70a,2019-07-12 13:47:11.572993+00,2019-07-12 13:47:11.572993+00,{defense-evasion}
+Redundant Access,"{User,Administrator,SYSTEM}","{Linux,macOS,Windows}",attack-pattern--6aabc5ec-eae6-422c-8311-38d45ee9838a,2019-07-12 13:47:11.595986+00,2019-07-12 13:47:11.595986+00,"{defense-evasion,persistence}"
+Email Collection,"",{Windows},attack-pattern--1608f3e1-598a-42f4-a01a-2e252e81728f,2019-07-12 13:47:11.607644+00,2019-07-12 13:47:11.607644+00,{collection}
+Remote System Discovery,"{User,Administrator,SYSTEM}","{Linux,macOS,Windows}",attack-pattern--e358d692-23c0-4a31-9eb6-ecc13a8d7735,2019-07-12 13:47:11.616972+00,2019-07-12 13:47:11.616972+00,{discovery}
+Create Account,{Administrator},"{Linux,macOS,Windows}",attack-pattern--e01be9c5-e763-4caf-aeb7-000b416aef67,2019-07-12 13:47:11.625314+00,2019-07-12 13:47:11.625314+00,{persistence}
+File and Directory Discovery,"{User,Administrator,SYSTEM}","{Linux,macOS,Windows}",attack-pattern--7bc57495-ea59-4380-be31-a64af124ef18,2019-07-12 13:47:11.679254+00,2019-07-12 13:47:11.679254+00,{discovery}
+Drive-by Compromise,{User},"{Windows,Linux,macOS}",attack-pattern--d742a578-d70e-4d0e-96a6-02a9c30204e6,2019-07-12 13:47:11.687551+00,2019-07-12 13:47:11.687551+00,{initial-access}
+Network Service Scanning,"{Administrator,SYSTEM,User}","{Linux,Windows,macOS}",attack-pattern--e3a12395-188d-4051-9a16-ea8e14d07b88,2019-07-12 13:47:11.695708+00,2019-07-12 13:47:11.695708+00,{discovery}
+Credential Dumping,"{Administrator,SYSTEM,root}","{Windows,Linux,macOS}",attack-pattern--0a3ead4e-6d47-4ccb-854c-a6a4f9d96b22,2019-07-12 13:47:11.704001+00,2019-07-12 13:47:11.704001+00,{credential-access}
+Brute Force,{User},"{Linux,macOS,Windows}",attack-pattern--a93494bb-4b80-4ea1-8695-3236a49916fd,2019-07-12 13:47:11.712465+00,2019-07-12 13:47:11.712465+00,{credential-access}
+Commonly Used Port,"","{Linux,macOS,Windows}",attack-pattern--f879d51c-5476-431c-aedf-f14d207e4d1e,2019-07-12 13:47:34.92112+00,2019-07-12 13:47:34.92112+00,{command-and-control}
+Winlogon Helper DLL,"{Administrator,SYSTEM}",{Windows},attack-pattern--514ede4c-78b3-4d78-a38b-daddf6217a79,2019-07-12 13:47:34.940766+00,2019-07-12 13:47:34.940766+00,{persistence}
+BITS Jobs,"{User,Administrator,SYSTEM}",{Windows},attack-pattern--c8e87b83-edbb-48d4-9295-4974897525b7,2019-07-12 13:47:34.949226+00,2019-07-12 13:47:34.949226+00,"{defense-evasion,persistence}"
+Process Injection,"{User,Administrator,SYSTEM,root}","{Linux,macOS,Windows}",attack-pattern--43e7dc91-05b2-474c-b9ac-2ed4fe101f4d,2019-07-12 13:47:34.957395+00,2019-07-12 13:47:34.957395+00,"{defense-evasion,privilege-escalation}"
+Process Discovery,"{User,Administrator,SYSTEM}","{Linux,macOS,Windows}",attack-pattern--8f4a33ec-8b1f-4b80-a2f6-642b2e479580,2019-07-12 13:47:34.974053+00,2019-07-12 13:47:34.974053+00,{discovery}
+Hidden Files and Directories,{User},"{Linux,macOS,Windows}",attack-pattern--dc27c2ec-c5f9-4228-ba57-d67b590bda93,2019-07-12 13:47:34.982382+00,2019-07-12 13:47:34.982382+00,"{defense-evasion,persistence}"
+Template Injection,{User},{Windows},attack-pattern--dc31fe1e-d722-49da-8f5f-92c7b5aff534,2019-07-12 13:47:34.990701+00,2019-07-12 13:47:34.990701+00,{defense-evasion}
+Security Software Discovery,"{User,Administrator,SYSTEM}","{macOS,Windows}",attack-pattern--241814ae-de3f-4656-b49e-f9a80764d4b7,2019-07-12 13:47:34.999041+00,2019-07-12 13:47:34.999041+00,{discovery}
+Standard Cryptographic Protocol,"","{Linux,macOS,Windows}",attack-pattern--4b74a1d4-b0e9-4ef1-93f1-14ecc6e2f5b5,2019-07-12 13:47:35.014604+00,2019-07-12 13:47:35.014604+00,{command-and-control}
+Deobfuscate/Decode Files or Information,{User},{Windows},attack-pattern--3ccef7ae-cb5e-48f6-8302-897105fbf55c,2019-07-12 13:47:35.024103+00,2019-07-12 13:47:35.024103+00,{defense-evasion}
+Data Encoding,{User},"{Linux,macOS,Windows}",attack-pattern--cc7b8c4e-9be0-47ca-b0bb-83915ec3ee2f,2019-07-12 13:47:56.937862+00,2019-07-12 13:47:56.937862+00,{command-and-control}
+Data Compressed,"","{Linux,Windows,macOS}",attack-pattern--b9f5dbe2-4c55-4fc5-af2e-d42c1d182ec4,2019-07-12 13:47:56.957372+00,2019-07-12 13:47:56.957372+00,{exfiltration}
+Execution Guardrails,{User},"{Linux,macOS,Windows}",attack-pattern--853c4192-4311-43e1-bfbb-b11b14911852,2019-07-12 13:47:56.982207+00,2019-07-12 13:47:56.982207+00,{defense-evasion}
+Exfiltration Over Alternative Protocol,"","{Linux,macOS,Windows}",attack-pattern--a19e86f8-1c0a-4fea-8407-23b73d615776,2019-07-12 13:47:56.998843+00,2019-07-12 13:47:56.998843+00,{exfiltration}
+Spearphishing Link,"","{Windows,macOS,Linux}",attack-pattern--20138b9d-1aac-4a26-8654-a36b6bbf2bba,2019-07-12 13:47:57.034706+00,2019-07-12 13:47:57.034706+00,{initial-access}
+Scheduled Task,"{Administrator,SYSTEM,User}",{Windows},attack-pattern--35dd844a-b219-4e2b-a6bb-efa9a75995a9,2019-07-12 13:47:57.043175+00,2019-07-12 13:47:57.043175+00,"{execution,persistence,privilege-escalation}"
+Valid Accounts,"{User,Administrator}","{Linux,macOS,Windows}",attack-pattern--b17a1a56-e99c-403c-8948-561df0cffe81,2019-07-12 13:47:57.051549+00,2019-07-12 13:47:57.051549+00,"{defense-evasion,persistence,privilege-escalation,initial-access}"
+Uncommonly Used Port,"","{Linux,macOS,Windows}",attack-pattern--c848fcf7-6b62-4bde-8216-b6c157d48da0,2019-07-12 13:47:57.059834+00,2019-07-12 13:47:57.059834+00,{command-and-control}
+Exploitation for Privilege Escalation,{User},"{Linux,macOS,Windows}",attack-pattern--b21c3b2d-02e6-45b1-980b-e69051040839,2019-07-12 13:47:57.068161+00,2019-07-12 13:47:57.068161+00,{privilege-escalation}
+Registry Run Keys / Startup Folder,"{User,Administrator}",{Windows},attack-pattern--9422fc14-1c43-410d-ab0f-a709b76c72dc,2019-07-12 13:47:57.076511+00,2019-07-12 13:47:57.076511+00,{persistence}
+Network Sniffing,"{Administrator,SYSTEM}","{Linux,macOS,Windows}",attack-pattern--3257eb21-f9a7-4430-8de1-d8b6e288f529,2019-07-12 13:47:57.093162+00,2019-07-12 13:47:57.093162+00,"{credential-access,discovery}"
+Remote File Copy,{User},"{Linux,macOS,Windows}",attack-pattern--e6919abc-99f9-4c6c-95a5-14761e7b2add,2019-07-12 13:47:57.118127+00,2019-07-12 13:47:57.118127+00,"{command-and-control,lateral-movement}"
+Standard Application Layer Protocol,"","{Linux,macOS,Windows}",attack-pattern--355be19c-ffc9-46d5-8d50-d6a036c675b6,2019-07-12 13:47:57.143251+00,2019-07-12 13:47:57.143251+00,{command-and-control}
+Command-Line Interface,"{User,Administrator,SYSTEM}","{Linux,macOS,Windows}",attack-pattern--7385dfaf-6886-4229-9ecd-6fd678040830,2019-07-12 13:49:27.590076+00,2019-07-12 13:49:27.590076+00,{execution}
+DLL Side-Loading,"",{Windows},attack-pattern--b2001907-166b-4d71-bb3c-9d26c871de09,2019-07-12 13:49:27.60607+00,2019-07-12 13:49:27.60607+00,{defense-evasion}
+Process Hollowing,{User},{Windows},attack-pattern--1c338d0f-a65e-4073-a5c1-c06878849f21,2019-07-12 13:49:27.615134+00,2019-07-12 13:49:27.615134+00,{defense-evasion}
+Windows Management Instrumentation,"{User,Administrator}",{Windows},attack-pattern--01a5a209-b94c-450b-b7f9-946497d91055,2019-07-12 13:49:27.631768+00,2019-07-12 13:49:27.631768+00,{execution}
+Data Staged,"","{Linux,macOS,Windows}",attack-pattern--7dd95ff6-712e-4056-9626-312ea4ab4c5e,2019-07-12 13:49:27.648431+00,2019-07-12 13:49:27.648431+00,{collection}
+System Network Connections Discovery,"{User,Administrator}","{Linux,macOS,Windows}",attack-pattern--7e150503-88e7-4861-866b-ff1ac82c4475,2019-07-12 13:49:27.656806+00,2019-07-12 13:49:27.656806+00,{discovery}
+Data from Local System,"","{Linux,macOS,Windows}",attack-pattern--3c4a2599-71ee-4405-ba1e-0e28414b4bc5,2019-07-12 13:49:27.732013+00,2019-07-12 13:49:27.732013+00,{collection}
+Data from Network Shared Drive,"","{Linux,macOS,Windows}",attack-pattern--ae676644-d2d2-41b7-af7e-9bed1b55898c,2019-07-12 13:49:27.740151+00,2019-07-12 13:49:27.740151+00,{collection}
+Connection Proxy,"","{Linux,macOS,Windows}",attack-pattern--731f4f55-b6d0-41d1-a7a9-072a66389aea,2019-07-12 13:49:27.748446+00,2019-07-12 13:49:27.748446+00,{command-and-control}
+Data Encrypted,"","{Linux,macOS,Windows}",attack-pattern--d54416bd-0803-41ca-870a-ce1af7c05638,2019-07-12 13:49:27.756785+00,2019-07-12 13:49:27.756785+00,{exfiltration}
+Trusted Relationship,"","{Linux,Windows,macOS}",attack-pattern--9fa07bef-9c81-421e-a8e5-ad4366c5a925,2019-07-12 13:49:27.765153+00,2019-07-12 13:49:27.765153+00,{initial-access}
+Input Capture,"{Administrator,SYSTEM}","{Linux,macOS,Windows}",attack-pattern--bb5a00de-e086-4859-a231-fa793f6797e2,2019-07-12 13:49:27.773457+00,2019-07-12 13:49:27.773457+00,"{collection,credential-access}"
+DLL Search Order Hijacking,"{User,Administrator,SYSTEM}",{Windows},attack-pattern--46944654-fcc1-4f63-9dad-628102376586,2019-07-12 13:49:27.790075+00,2019-07-12 13:49:27.790075+00,"{persistence,privilege-escalation,defense-evasion}"
+Masquerading,"","{Linux,macOS,Windows}",attack-pattern--42e8de7b-37b2-4258-905a-6897815e58e0,2019-07-12 13:49:27.798398+00,2019-07-12 13:49:27.798398+00,{defense-evasion}
+Remote Desktop Protocol,"{'"Remote Desktop Users'",User}",{Windows},attack-pattern--51dea151-0898-4a45-967c-3ebee0420484,2019-07-12 13:49:27.806713+00,2019-07-12 13:49:27.806713+00,{lateral-movement}
+System Network Configuration Discovery,{User},"{Linux,macOS,Windows}",attack-pattern--707399d6-ab3e-4963-9315-d9d3818cd6a0,2019-07-12 13:49:27.823553+00,2019-07-12 13:49:27.823553+00,{discovery}
+Remote Services,"","{Linux,macOS,Windows}",attack-pattern--54a649ff-439a-41a4-9856-8d144a2551ba,2019-07-12 13:49:27.840159+00,2019-07-12 13:49:27.840159+00,{lateral-movement}
+Account Discovery,{User},"{Linux,macOS,Windows}",attack-pattern--72b74d71-8169-42aa-92e0-e7b04b9f5a08,2019-07-12 13:49:27.872617+00,2019-07-12 13:49:27.872617+00,{discovery}
+File Deletion,{User},"{Linux,macOS,Windows}",attack-pattern--56fca983-1cf1-4fd1-bda0-5e170a37ab59,2019-07-12 13:49:27.890179+00,2019-07-12 13:49:27.890179+00,{defense-evasion}
+Standard Non-Application Layer Protocol,"","{Windows,Linux,macOS}",attack-pattern--c21d5a77-d422-4a69-acd7-2c53c1faa34b,2019-07-12 16:53:47.096074+00,2019-07-12 16:53:47.096074+00,{command-and-control}
+Hooking,"{Administrator,SYSTEM}",{Windows},attack-pattern--66f73398-8394-4711-85e5-34c8540b22a5,2019-07-12 16:53:47.18179+00,2019-07-12 16:53:47.18179+00,"{persistence,privilege-escalation,credential-access}"
+Custom Command and Control Protocol,"","{Linux,macOS,Windows}",attack-pattern--f72eb8a8-cd4c-461d-a814-3f862befbf00,2019-07-12 16:53:47.243281+00,2019-07-12 16:53:47.243281+00,{command-and-control}
+Code Signing,"","{macOS,Windows}",attack-pattern--1b84d551-6de8-4b96-9930-d177677c3b1d,2019-07-12 16:54:09.493562+00,2019-07-12 16:54:09.493562+00,{defense-evasion}
+Rootkit,"{Administrator,SYSTEM,root}","{Linux,macOS,Windows}",attack-pattern--0f20e3cb-245b-4a61-8a91-2d93f7cb0e9b,2019-07-12 16:54:09.531304+00,2019-07-12 16:54:09.531304+00,{defense-evasion}
+Modify Registry,"{User,Administrator,SYSTEM}",{Windows},attack-pattern--57340c81-c025-4189-8fa0-fc7ede51bae4,2019-07-12 16:54:32.378241+00,2019-07-12 16:54:32.378241+00,{defense-evasion}
+Application Deployment Software,"","{Linux,macOS,Windows}",attack-pattern--327f3cc5-eea1-42d4-a6cd-ed34b7ce8f61,2019-07-12 16:54:32.395988+00,2019-07-12 16:54:32.395988+00,{lateral-movement}
+Pass the Hash,"",{Windows},attack-pattern--c23b740b-a42b-47a1-aec2-9d48ddd547ff,2019-07-12 16:54:32.405296+00,2019-07-12 16:54:32.405296+00,{lateral-movement}
+Pass the Ticket,"",{Windows},attack-pattern--a257ed11-ff3b-4216-8c9d-3938ef57064c,2019-07-12 16:54:32.416636+00,2019-07-12 16:54:32.416636+00,{lateral-movement}
+Regsvr32,"{User,Administrator}",{Windows},attack-pattern--68f7e3a1-f09f-4164-9a62-16b648a0dd5a,2019-07-12 16:54:32.433283+00,2019-07-12 16:54:32.433283+00,"{defense-evasion,execution}"
+System Information Discovery,{User},"{Linux,macOS,Windows}",attack-pattern--354a7f88-63fb-41b5-a801-ce3b377b36f1,2019-07-12 16:54:32.479202+00,2019-07-12 16:54:32.479202+00,{discovery}
+File Permissions Modification,"{User,Administrator,SYSTEM,root}","{Linux,Windows,macOS}",attack-pattern--65917ae0-b854-4139-83fe-bf2441cf0196,2019-07-12 16:54:32.525034+00,2019-07-12 16:54:32.525034+00,{defense-evasion}
+Mshta,{User},{Windows},attack-pattern--a127c32c-cbb0-4f9d-be07-881a792408ec,2019-07-12 16:54:32.550014+00,2019-07-12 16:54:32.550014+00,"{defense-evasion,execution}"
+System Owner/User Discovery,"{User,Administrator}","{Linux,macOS,Windows}",attack-pattern--03d7999c-1f4c-42cc-8373-e7690d318104,2019-07-12 16:54:32.558334+00,2019-07-12 16:54:32.558334+00,{discovery}
+Software Packing,"",{Windows},attack-pattern--6ff403bc-93e3-48be-8687-e102fdba8c88,2019-07-12 16:54:32.575018+00,2019-07-12 16:54:32.575018+00,{defense-evasion}
+Office Application Startup,"{User,Administrator}",{Windows},attack-pattern--2c4d4e92-0ccf-4a97-b54c-86d662988a53,2019-07-12 16:54:32.597052+00,2019-07-12 16:54:32.597052+00,{persistence}
+Windows Admin Shares,{Administrator},{Windows},attack-pattern--ffe742ed-9100-4686-9e00-c331da544787,2019-07-12 16:54:32.638733+00,2019-07-12 16:54:32.638733+00,{lateral-movement}
+Modify Existing Service,"{Administrator,SYSTEM}",{Windows},attack-pattern--62dfd1ca-52d5-483c-a84b-d6e80bf94b7b,2019-07-12 16:54:32.650055+00,2019-07-12 16:54:32.650055+00,{persistence}
+Exfiltration Over Command and Control Channel,"","{Linux,macOS,Windows}",attack-pattern--92d7da27-2d91-488e-a00c-059dc162766d,2019-07-12 16:54:32.683368+00,2019-07-12 16:54:32.683368+00,{exfiltration}
+Indicator Removal on Host,"","{Linux,macOS,Windows}",attack-pattern--799ace7f-e227-4411-baa0-8868704f2a69,2019-07-12 16:54:32.691728+00,2019-07-12 16:54:32.691728+00,{defense-evasion}
+Service Execution,"{Administrator,SYSTEM}",{Windows},attack-pattern--f44731de-ea9f-406d-9b83-30ecbb9b4392,2019-07-12 16:54:32.750109+00,2019-07-12 16:54:32.750109+00,{execution}
+Web Shell,"","{Linux,Windows,macOS}",attack-pattern--c16e5409-ee53-4d79-afdc-4099dc9292df,2019-07-12 16:54:32.77508+00,2019-07-12 16:54:32.77508+00,"{persistence,privilege-escalation}"
+Query Registry,"{User,Administrator,SYSTEM}",{Windows},attack-pattern--c32f7008-9fea-41f7-8366-5eb9b74bd896,2019-07-12 16:54:32.791781+00,2019-07-12 16:54:32.791781+00,{discovery}
+New Service,"{Administrator,SYSTEM}",{Windows},attack-pattern--478aa214-2ca7-4ec0-9978-18798e514790,2019-07-12 16:54:32.808396+00,2019-07-12 16:54:32.808396+00,"{persistence,privilege-escalation}"
+Binary Padding,"","{Linux,macOS,Windows}",attack-pattern--519630c5-f03f-4882-825c-3af924935817,2019-07-12 16:54:32.816733+00,2019-07-12 16:54:32.816733+00,{defense-evasion}
+Timestomp,"{User,Administrator,SYSTEM}","{Linux,Windows}",attack-pattern--128c55d3-aeba-469f-bd3e-c8996ab4112a,2019-07-12 16:54:32.833419+00,2019-07-12 16:54:32.833419+00,{defense-evasion}
+NTFS File Attributes,"",{Windows},attack-pattern--f2d44246-91f1-478a-b6c8-1227e0ca109d,2019-07-12 16:54:32.855428+00,2019-07-12 16:54:32.855428+00,{defense-evasion}
+Signed Script Proxy Execution,{User},{Windows},attack-pattern--f6fe9070-7a65-49ea-ae72-76292f42cebe,2019-07-12 16:54:32.866813+00,2019-07-12 16:54:32.866813+00,"{defense-evasion,execution}"
+Indicator Removal from Tools,"","{Linux,macOS,Windows}",attack-pattern--00d0b012-8a03-410e-95de-5826bf542de6,2019-07-12 16:58:04.811991+00,2019-07-12 16:58:04.811991+00,{defense-evasion}
+Automated Collection,{User},"{Linux,macOS,Windows}",attack-pattern--30208d3e-0d6b-43c8-883e-44462a514619,2019-07-12 16:58:04.82872+00,2019-07-12 16:58:04.82872+00,{collection}
+Web Service,{User},"{Linux,macOS,Windows}",attack-pattern--830c9528-df21-472c-8c14-a036bf17d665,2019-07-12 16:58:04.912011+00,2019-07-12 16:58:04.912011+00,"{command-and-control,defense-evasion}"
+Dynamic Data Exchange,{User},{Windows},attack-pattern--edbe24e9-aec4-4994-ac75-6a6bc7f1ddd0,2019-07-12 16:58:04.920362+00,2019-07-12 16:58:04.920362+00,{execution}
+Bypass User Account Control,"{User,Administrator}",{Windows},attack-pattern--ca1a3f50-5ebd-41f8-8320-2c7d6a6e88be,2019-07-12 16:58:04.970398+00,2019-07-12 16:58:04.970398+00,"{defense-evasion,privilege-escalation}"
+Graphical User Interface,"{User,Administrator,SYSTEM}","{Linux,macOS,Windows}",attack-pattern--a6525aec-acc4-47fe-92f9-b9b4de4b9228,2019-07-12 16:58:56.987175+00,2019-07-12 16:58:56.987175+00,{execution}
+Accessibility Features,{Administrator},{Windows},attack-pattern--9b99b83a-1aac-4e29-b975-b374950551a3,2019-07-12 16:58:57.132196+00,2019-07-12 16:58:57.132196+00,"{persistence,privilege-escalation}"
+Account Manipulation,{Administrator},{Windows},attack-pattern--a10641f4-87b4-45a3-a906-92a149cb2c27,2019-07-12 16:58:57.235959+00,2019-07-12 16:58:57.235959+00,"{credential-access,persistence}"
+Rundll32,{User},{Windows},attack-pattern--62b8c999-dcc0-4755-bd69-09442d9359f5,2019-07-12 16:58:57.294375+00,2019-07-12 16:58:57.294375+00,"{defense-evasion,execution}"
+Credentials in Files,"{User,Administrator,SYSTEM}","{Linux,macOS,Windows}",attack-pattern--ba8e391f-14b5-496f-81f2-2d5ecd646c1c,2019-07-12 16:58:57.327704+00,2019-07-12 16:58:57.327704+00,{credential-access}
+Multi-Stage Channels,"","{Linux,macOS,Windows}",attack-pattern--84e02621-8fdf-470f-bd58-993bb6a89d91,2019-07-12 16:58:57.352663+00,2019-07-12 16:58:57.352663+00,{command-and-control}
+Permission Groups Discovery,{User},"{Linux,macOS,Windows}",attack-pattern--15dbf668-795c-41e6-8219-f0447c0e64ce,2019-07-12 16:58:57.361012+00,2019-07-12 16:58:57.361012+00,{discovery}
+Network Share Discovery,{User},"{macOS,Windows}",attack-pattern--3489cfc5-640f-4bb3-a103-9137b97de79f,2019-07-12 17:00:15.83257+00,2019-07-12 17:00:15.83257+00,{discovery}
+System Service Discovery,"{User,Administrator,SYSTEM}",{Windows},attack-pattern--322bad5a-1c49-4d23-ab79-76d641794afa,2019-07-12 17:00:15.932594+00,2019-07-12 17:00:15.932594+00,{discovery}
+Domain registration hijacking,"","",attack-pattern--aadaee0d-794c-4642-8293-7ec22a99fb1a,2019-07-12 17:00:15.94425+00,2019-07-12 17:00:15.94425+00,{establish-&-maintain-infrastructure}
+Compromise 3rd party infrastructure to support delivery,"","",attack-pattern--e51398e6-53dc-4e9f-a323-e54683d8672b,2019-07-12 17:00:15.952599+00,2019-07-12 17:00:15.952599+00,{establish-&-maintain-infrastructure}
+Acquire and/or use 3rd party software services,"","",attack-pattern--488da8ed-2887-4ef6-a39a-5b69bc6682c6,2019-07-12 17:00:15.960889+00,2019-07-12 17:00:15.960889+00,{establish-&-maintain-infrastructure}
+Dynamic DNS,"","",attack-pattern--54eb2bab-125f-4d1c-b999-0c692860bafe,2019-07-12 17:00:15.969237+00,2019-07-12 17:00:15.969237+00,{establish-&-maintain-infrastructure}
+Obtain/re-use payloads,"","",attack-pattern--27f3ddf8-1b77-4cc2-a4c0-e6da3d31a768,2019-07-12 17:00:15.977539+00,2019-07-12 17:00:15.977539+00,{build-capabilities}
+Disabling Security Tools,"","{Linux,macOS,Windows}",attack-pattern--2e0dd10b-676d-4964-acd0-8a404c92b044,2019-07-12 17:01:01.128898+00,2019-07-12 17:01:01.128898+00,{defense-evasion}
+Execution through API,"{User,Administrator,SYSTEM}",{Windows},attack-pattern--391d824f-0ef1-47a0-b0ee-c59a75e27670,2019-07-12 17:01:01.206048+00,2019-07-12 17:01:01.206048+00,{execution}
+Shortcut Modification,"{User,Administrator}",{Windows},attack-pattern--970cdb5c-02fb-4c38-b17e-d6327cf3c810,2019-07-12 17:01:01.264765+00,2019-07-12 17:01:01.264765+00,{persistence}
+Domain Fronting,"","{Linux,macOS,Windows}",attack-pattern--1ce03c65-5946-4ac9-9d4d-66db87e024bd,2019-07-12 17:01:54.237333+00,2019-07-12 17:01:54.237333+00,{command-and-control}
+Multi-hop Proxy,"","{Linux,macOS,Windows}",attack-pattern--7d751199-05fa-4a72-920f-85df4506c76c,2019-07-12 17:01:54.334281+00,2019-07-12 17:01:54.334281+00,{command-and-control}
+Windows Management Instrumentation Event Subscription,"{Administrator,SYSTEM}",{Windows},attack-pattern--e906ae4d-1d3a-4675-be23-22f7311c0da4,2019-07-12 17:01:54.362423+00,2019-07-12 17:01:54.362423+00,{persistence}
+Fallback Channels,"","{Linux,Windows,macOS}",attack-pattern--f24faf46-3b26-4dbb-98f2-63460498e433,2019-07-12 17:02:29.064324+00,2019-07-12 17:02:29.064324+00,{command-and-control}
+Service Stop,"{Administrator,SYSTEM,User}",{Windows},attack-pattern--20fb2507-d71c-455d-9b6d-6104461cf26b,2019-07-12 17:02:41.856894+00,2019-07-12 17:02:41.856894+00,{impact}
+Compiled HTML File,{User},{Windows},attack-pattern--d21a2069-23d5-4043-ad6d-64f6b644cb1a,2019-07-12 17:02:41.896672+00,2019-07-12 17:02:41.896672+00,"{defense-evasion,execution}"
+Application Window Discovery,{User},"{macOS,Windows}",attack-pattern--4ae4f953-fe58-4cc8-a327-33257e30a830,2019-07-12 17:02:41.913416+00,2019-07-12 17:02:41.913416+00,{discovery}
+System Time Discovery,{User},{Windows},attack-pattern--f3c544dc-673c-4ef3-accb-53229f1ae077,2019-07-12 17:02:41.943531+00,2019-07-12 17:02:41.943531+00,{discovery}
+Bootkit,"{Administrator,SYSTEM}","{Linux,Windows}",attack-pattern--02fefddc-fb1b-423f-a76b-7552dd211d4d,2019-07-12 17:02:41.993459+00,2019-07-12 17:02:41.993459+00,{persistence}
+Custom Cryptographic Protocol,"","{Linux,macOS,Windows}",attack-pattern--3b3cbbe0-6ed3-4334-b543-3ddfd8c5642d,2019-07-12 17:02:42.005102+00,2019-07-12 17:02:42.005102+00,{command-and-control}
+Multiband Communication,"","{Linux,macOS,Windows}",attack-pattern--99709758-2b96-48f2-a68a-ad7fbd828091,2019-07-12 17:02:42.015757+00,2019-07-12 17:02:42.015757+00,{command-and-control}
+Data Destruction,"{User,Administrator,root,SYSTEM}","{Linux,macOS,Windows}",attack-pattern--d45a3d09-b3cf-48f4-9f0f-f521ee5cb05c,2019-07-12 17:02:42.101872+00,2019-07-12 17:02:42.101872+00,{impact}
+Disk Content Wipe,"{User,Administrator,root,SYSTEM}","{Linux,macOS,Windows}",attack-pattern--b82f7d37-b826-4ec9-9391-8e121c78aed7,2019-07-12 17:02:42.243101+00,2019-07-12 17:02:42.243101+00,{impact}
+Disk Structure Wipe,"{Administrator,root,SYSTEM}","{Windows,macOS,Linux}",attack-pattern--2e114e45-2c50-404c-804a-3af9564d240e,2019-07-12 17:02:42.268089+00,2019-07-12 17:02:42.268089+00,{impact}
+Resource Hijacking,"{User,Administrator}","{Linux,macOS,Windows}",attack-pattern--cd25c1b4-935c-4f0e-ba8d-552f28bc4783,2019-07-12 17:02:42.326504+00,2019-07-12 17:02:42.326504+00,{impact}
+Access Token Manipulation,"{User,Administrator}",{Windows},attack-pattern--dcaa092b-7de9-4a21-977f-7fcb77e89c48,2019-07-12 17:02:42.343163+00,2019-07-12 17:02:42.343163+00,"{defense-evasion,privilege-escalation}"
+Build social network persona,"","",attack-pattern--9108e212-1c94-4f8d-be76-1aad9b4c86a4,2019-07-12 17:03:36.665212+00,2019-07-12 17:03:36.665212+00,{persona-development}
+Develop social network persona digital footprint,"","",attack-pattern--271e6d40-e191-421a-8f87-a8102452c201,2019-07-12 17:03:36.700016+00,2019-07-12 17:03:36.700016+00,{persona-development}
+Obfuscate infrastructure,"","",attack-pattern--72c8d526-1247-42d4-919c-6d7a31ca8f39,2019-07-12 17:03:36.711004+00,2019-07-12 17:03:36.711004+00,{establish-&-maintain-infrastructure}
+External Remote Services,{User},{Windows},attack-pattern--10d51417-ee35-4589-b1ff-b6df1c334e8d,2019-07-12 17:04:00.751007+00,2019-07-12 17:04:00.751007+00,"{persistence,initial-access}"
+Spearphishing via Service,"","{Windows,macOS,Linux}",attack-pattern--d3df754e-997b-4cf9-97d4-70feb3120847,2019-07-12 17:06:08.206114+00,2019-07-12 17:06:08.206114+00,{initial-access}
+Screen Capture,"","{Linux,macOS,Windows}",attack-pattern--0259baeb-9f63-4c69-bf10-eb038c390688,2019-07-12 17:06:08.21858+00,2019-07-12 17:06:08.21858+00,{collection}
+Exploit Public-Facing Application,"","{Linux,Windows,macOS}",attack-pattern--3f886f2a-874f-4333-b794-aa6075009b1c,2019-07-12 17:09:48.47227+00,2019-07-12 17:09:48.47227+00,{initial-access}
+Remote Access Tools,{User},"{Linux,Windows,macOS}",attack-pattern--4061e78c-1284-44b4-9116-73e4ac3912f7,2019-07-12 17:09:48.530781+00,2019-07-12 17:09:48.530781+00,{command-and-control}
+Remote access tool development,"","",attack-pattern--9755ecdc-deb0-40e6-af49-713cb0f8ed92,2019-07-12 17:09:48.589088+00,2019-07-12 17:09:48.589088+00,{build-capabilities}
+Acquire and/or use 3rd party infrastructure services,"","",attack-pattern--286cc500-4291-45c2-99a1-e760db176402,2019-07-12 17:09:48.602398+00,2019-07-12 17:09:48.602398+00,{adversary-opsec}
+Forced Authentication,{User},{Windows},attack-pattern--b77cf5f3-6060-475d-bd60-40ccbf28fdc2,2019-07-12 17:10:11.167901+00,2019-07-12 17:10:11.167901+00,{credential-access}
+Automated Exfiltration,"","{Linux,macOS,Windows}",attack-pattern--774a3188-6ba9-4dc4-879d-d54ee48a5ce9,2019-07-12 17:11:16.499492+00,2019-07-12 17:11:16.499492+00,{exfiltration}
+AppCert DLLs,"{Administrator,SYSTEM}",{Windows},attack-pattern--4bf5845d-a814-4490-bc5c-ccdee6043025,2019-07-12 17:11:16.641097+00,2019-07-12 17:11:16.641097+00,"{persistence,privilege-escalation}"
+Browser Extensions,{User},"{Linux,macOS,Windows}",attack-pattern--389735f1-f21c-4208-b8f0-f8031e7169b8,2019-07-12 17:14:50.186631+00,2019-07-12 17:14:50.186631+00,{persistence}
+Runtime Data Manipulation,"{User,Administrator,root,SYSTEM}","{Linux,macOS,Windows}",attack-pattern--ca205a36-c1ad-488b-aa6c-ab34bdd3a36b,2019-07-12 17:16:17.913244+00,2019-07-12 17:16:17.913244+00,{impact}
+Clipboard Data,"","{Linux,Windows,macOS}",attack-pattern--30973a08-aed9-4edf-8604-9084ce1b5c4f,2019-07-12 17:16:17.96912+00,2019-07-12 17:16:17.96912+00,{collection}
+Data Encrypted for Impact,"{User,Administrator,root,SYSTEM}","{Linux,macOS,Windows}",attack-pattern--b80d107d-fa0d-4b60-9684-b0433e8bdba0,2019-07-12 17:16:17.985765+00,2019-07-12 17:16:17.985765+00,{impact}
+Transmitted Data Manipulation,"{User,Administrator,root,SYSTEM}","{Linux,macOS,Windows}",attack-pattern--cc1e737c-236c-4e3b-83ba-32039a626ef8,2019-07-12 17:16:17.994116+00,2019-07-12 17:16:17.994116+00,{impact}
+Port Monitors,"{Administrator,SYSTEM}",{Windows},attack-pattern--1f47e2fd-fa77-4f2f-88ee-e85df308f125,2019-07-12 17:16:18.002436+00,2019-07-12 17:16:18.002436+00,"{persistence,privilege-escalation}"
+Stored Data Manipulation,"{User,Administrator,root,SYSTEM}","{Linux,macOS,Windows}",attack-pattern--0bf78622-e8d2-41da-a857-731472d61a92,2019-07-12 17:16:18.052463+00,2019-07-12 17:16:18.052463+00,{impact}
+Audio Capture,{User},"{Linux,macOS,Windows}",attack-pattern--1035cdf2-3e5f-446f-a7a7-e8f6d7925967,2019-07-12 17:17:30.29549+00,2019-07-12 17:17:30.29549+00,{collection}
+Data Obfuscation,"","{Linux,macOS,Windows}",attack-pattern--ad255bfe-a9e6-4b52-a258-8d3462abe842,2019-07-12 17:18:11.817845+00,2019-07-12 17:18:11.817845+00,{command-and-control}
+Video Capture,{User},"{Windows,macOS}",attack-pattern--6faf650d-bf31-4eb4-802d-1000cf38efaf,2019-07-12 17:20:22.390341+00,2019-07-12 17:20:22.390341+00,{collection}
+Virtualization/Sandbox Evasion,"",{Windows},attack-pattern--82caa33e-d11a-433a-94ea-9b5a5fbef81d,2019-07-12 17:20:22.398664+00,2019-07-12 17:20:22.398664+00,"{defense-evasion,discovery}"
+Application Shimming,{Administrator},{Windows},attack-pattern--7c93aa74-4bc0-4a9e-90ea-f25f86301566,2019-07-12 17:20:22.431974+00,2019-07-12 17:20:22.431974+00,"{persistence,privilege-escalation}"
+Password Policy Discovery,{User},"{Windows,Linux,macOS}",attack-pattern--b6075259-dba3-44e9-87c7-e954f37ec0d5,2019-07-12 17:21:29.912485+00,2019-07-12 17:21:29.912485+00,{discovery}
+Signed Binary Proxy Execution,{User},{Windows},attack-pattern--457c7820-d331-465a-915e-42f85500ccc4,2019-07-12 17:22:39.725568+00,2019-07-12 17:22:39.725568+00,"{defense-evasion,execution}"
+Windows Remote Management,"{User,Administrator}",{Windows},attack-pattern--c3bce4f4-9795-46c6-976e-8676300bbc39,2019-07-12 17:24:54.423372+00,2019-07-12 17:24:54.423372+00,"{execution,lateral-movement}"
+Network Share Connection Removal,"{Administrator,User}",{Windows},attack-pattern--e7eab98d-ae11-4491-bd28-a53ba875865a,2019-07-12 17:24:54.515093+00,2019-07-12 17:24:54.515093+00,{defense-evasion}
+Data Transfer Size Limits,"","{Linux,macOS,Windows}",attack-pattern--c3888c54-775d-4b2f-b759-75a2ececcbfd,2019-07-12 17:24:54.615139+00,2019-07-12 17:24:54.615139+00,{exfiltration}
+Logon Scripts,"","{macOS,Windows}",attack-pattern--03259939-0b57-482f-8eb5-87c0e0d54334,2019-07-12 17:25:43.725862+00,2019-07-12 17:25:43.725862+00,"{lateral-movement,persistence}"
+CMSTP,{User},{Windows},attack-pattern--7d6f590f-544b-45b4-9a42-e0805f342af3,2019-07-12 17:25:43.817561+00,2019-07-12 17:25:43.817561+00,"{defense-evasion,execution}"
+XSL Script Processing,{User},{Windows},attack-pattern--ebbe170d-aa74-4946-8511-9921243415a3,2019-07-12 17:25:43.917517+00,2019-07-12 17:25:43.917517+00,"{defense-evasion,execution}"
+Identify business relationships,"","",attack-pattern--5b6ce031-bb86-407a-9984-2b9700ac4549,2019-07-12 17:26:03.617558+00,2019-07-12 17:26:03.617558+00,{people-information-gathering}
+Distributed Component Object Model,"{Administrator,SYSTEM}",{Windows},attack-pattern--772bc7a8-a157-42cc-8728-d648e25c7fe7,2019-07-12 17:26:29.056656+00,2019-07-12 17:26:29.056656+00,{lateral-movement}
+Compile After Delivery,{User},"{Linux,macOS,Windows}",attack-pattern--cf7b3a06-8b42-4c33-bbe9-012120027925,2019-07-12 17:26:29.153386+00,2019-07-12 17:26:29.153386+00,{defense-evasion}
+Third-party Software,"{User,Administrator,SYSTEM}","{Linux,macOS,Windows}",attack-pattern--92a78814-b191-47ca-909c-1ccfe3777414,2019-07-12 17:28:41.194648+00,2019-07-12 17:28:41.194648+00,"{execution,lateral-movement}"
+Supply Chain Compromise,"","{Linux,Windows,macOS}",attack-pattern--3f18edba-28f4-4bb9-82c3-8aa60dcac5f7,2019-07-12 17:29:12.474138+00,2019-07-12 17:29:12.474138+00,{initial-access}
+Peripheral Device Discovery,"{User,Administrator,SYSTEM}",{Windows},attack-pattern--348f1eef-964b-4eb6-bb53-69b3dcb0c643,2019-07-12 17:30:21.752522+00,2019-07-12 17:30:21.752522+00,{discovery}
+Data from Information Repositories,{User},"{Linux,Windows,macOS}",attack-pattern--d28ef391-8ed4-45dc-bc4a-2f43abf54416,2019-07-12 17:30:21.811095+00,2019-07-12 17:30:21.811095+00,{collection}
+Communication Through Removable Media,"","{Linux,macOS,Windows}",attack-pattern--64196062-5210-42c3-9a02-563a0d1797ef,2019-07-12 17:30:21.835921+00,2019-07-12 17:30:21.835921+00,{command-and-control}
+Exploitation of Remote Services,{User},"{Linux,Windows,macOS}",attack-pattern--9db0cf3a-a3c9-4012-8268-123b9db6fd82,2019-07-12 17:30:21.969427+00,2019-07-12 17:30:21.969427+00,{lateral-movement}
+Replication Through Removable Media,{User},{Windows},attack-pattern--3b744087-9945-4a6f-91e8-9dbceda417a4,2019-07-12 17:30:21.994407+00,2019-07-12 17:30:21.994407+00,"{lateral-movement,initial-access}"
+Component Object Model Hijacking,{User},{Windows},attack-pattern--9b52fca7-1a36-4da0-b62d-da5bd83b4d69,2019-07-12 17:30:22.002757+00,2019-07-12 17:30:22.002757+00,"{defense-evasion,persistence}"
+Data from Removable Media,"","{Linux,macOS,Windows}",attack-pattern--1b7ba276-eedc-4951-a762-0ceea2c030ec,2019-07-12 17:30:22.102821+00,2019-07-12 17:30:22.102821+00,{collection}
+Exploitation for Defense Evasion,{User},"{Linux,Windows,macOS}",attack-pattern--fe926152-f431-4baf-956c-4ad3cb0bf23b,2019-07-12 17:30:22.119496+00,2019-07-12 17:30:22.119496+00,{defense-evasion}
+Buy domain name,"","",attack-pattern--45242287-2964-4a3e-9373-159fad4d8195,2019-07-12 17:30:22.135978+00,2019-07-12 17:30:22.135978+00,{establish-&-maintain-infrastructure}
+Image File Execution Options Injection,"{Administrator,SYSTEM}",{Windows},attack-pattern--62166220-e498-410f-a90a-19d4339d4e99,2019-07-12 17:33:15.582819+00,2019-07-12 17:33:15.582819+00,"{privilege-escalation,persistence,defense-evasion}"
+Dynamic DNS,"","",attack-pattern--20a66013-8dab-4ca3-a67d-766c842c561c,2019-07-12 17:33:15.682932+00,2019-07-12 17:33:15.682932+00,{adversary-opsec}
+Acquire and/or use 3rd party infrastructure services,"","",attack-pattern--795c1a92-3a26-453e-b99a-6a566aa94dc6,2019-07-12 17:33:15.691279+00,2019-07-12 17:33:15.691279+00,{establish-&-maintain-infrastructure}

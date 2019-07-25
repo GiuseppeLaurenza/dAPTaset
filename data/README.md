@@ -13,7 +13,7 @@ This table tracks the main name of each Advanced Persistent Threat
 - ***apt_name*** (*text*, *not null*) contains a string representing the main name of an APT.
 - **created** (*timestamp*, *not null*) contanins the time of the creation of the record.
 - **last_update** (*timestamp*, *not null*) contains the time of the last modification of the record, it is equal to the **created** field ath the creation of the record.
-### REPORTS
+### REPORT
 This table tracks the parsed reports which can be linked to an APT
 - ***report_id*** (*integer*, *not null*) is a numerical sequence to identify a record.
 - **hash** (*text*, *unique*) is the SHA-1 of the report object, computed from parsed text or file object, depending to the report type.
@@ -35,7 +35,7 @@ This table tracks the *Common Vulnerabilities and Exposures* found in reports th
 - **affected_products** (*text*) contains a list of the products affected by the vulnerability.
 - **created** (*timestamp*, *not null*) contanins the time of the creation of the record.
 - **last_update** (*timestamp*, *not null*) contains the time of the last modification of the record, it is equal to the *created* field ath the creation of the record.
-### KEYWORDS
+### KEYWORD
 This table contains the list of words related to particular APTs, like alternative names, in order to allow an easy matching among different naming systems.
 - ***keyword*** (*text*, *not null*) is a string representing the word.
 - **is_alias** (*bool*, *not null*) is a flag to show if the current word is an alias of the APT.
@@ -50,7 +50,7 @@ This table stores all the network related IOCs found parsing report objects.
 - **role** (*text*, *not null*) represents why the *address* is tracked, like is the C2C IP address or the attacked email, the  default is "unknown"
 - **created** (*timestamp*, *not null*) contanins the time of the creation of the record.
 - **last_update** (*timestamp*, *not null*) contains the time of the last modification of the record, it is equal to the *created* field ath the creation of the record.
-### SAMPLES
+### SAMPLE
 This table contains the list of binaries related to APTs.
 - ***sample_id*** (*integer*, *not null*) is a sequence used to identify and indexing samples.
 - **md5** (*text*, *unique*) contains the "md5" of the binary file.
@@ -59,7 +59,7 @@ This table contains the list of binaries related to APTs.
 - **sha512** (*text*, *unique*) contains the "sha512" of the binary file.
 - **created** (*timestamp*, *not null*) contanins the time of the creation of the record.
 - **last_update** (*timestamp*, *not null*) contains the time of the last modification of the record, it is equal to the *created* field ath the creation of the record.
-### TECHNIQUES
+### TECHNIQUE
 - ***mitre_id*** (*text*, *not null*) text identifier.
 - **name** (*text*, *not null*) represents the name of the technique
 - **permissions_required** (*text*, *not null*) contains the list of the levels of permission required do be applied.
@@ -70,15 +70,15 @@ This table contains the list of binaries related to APTs.
 
 ## Relationships Tables
 _______________
-### APT_COS
-- ***apt_name*** (*text*, *not null*, FK to [*APT.apt_name*](###APT))
-- ***country_organization_sector*** (*text*, *not null*, FK to [*COUNTRY_ORGANIZATION_SECTOR.name*](###COUNTRY_ORGANIZATION_SECTOR))
-- **relation** (*text*, *not null*) contains the reason of the link between APT and the COUNTRY_ORGANIZATION_SECTOR, for example indicating that current APT has as suspected target this country.
-- **created** (*timestamp*, *not null*) contanins the time of the creation of the record.
-- **last_update** (*timestamp*, *not null*) contains the time of the last modification of the record, it is equal to the *created* field ath the creation of the record.
 ### APT_REPORT
 - ***apt_name*** (*text*, *not null*, FK to [*APT.apt_name*](###APT))
 - ***report_id*** (*integer*, *not null*, FK to [*REPORTS.report_id*](###REPORTS))
+- **created** (*timestamp*, *not null*) contanins the time of the creation of the record.
+- **last_update** (*timestamp*, *not null*) contains the time of the last modification of the record, it is equal to the *created* field ath the creation of the record.
+### REPORT_COS
+- ***report_id*** (*integer*, *not null*, FK to [*REPORTS.report_id*](###REPORTS))
+- ***country_organization_sector*** (*text*, *not null*, FK to [*COUNTRY_ORGANIZATION_SECTOR.name*](###COUNTRY_ORGANIZATION_SECTOR))
+- **relation** (*text*, *not null*) contains the reason of the link between APT and the COUNTRY_ORGANIZATION_SECTOR, for example indicating that current APT has as suspected target this country.
 - **created** (*timestamp*, *not null*) contanins the time of the creation of the record.
 - **last_update** (*timestamp*, *not null*) contains the time of the last modification of the record, it is equal to the *created* field ath the creation of the record.
 ### REPORT_CVE
@@ -96,7 +96,7 @@ _______________
 - ***technique_id*** (*text*, *not null*, FK to [*TECHNIQUES.mitre_id*](###TECHNIQUES))
 - **created** (*timestamp*, *not null*) contanins the time of the creation of the record.
 - **last_update** (*timestamp*, *not null*) contains the time of the last modification of the record, it is equal to the *created* field ath the creation of the record.
-### SAMPLE_REPORT
+### REPORT_SAMPLE
 - ***report_id*** (*integer*, *not null*, FK to [*REPORTS.report_id*](###REPORTS))
 - ***sample_id*** (*text*, *not null*, FK to [*SAMPLES.sample_id*](###SAMPLES))
 - **created** (*timestamp*, *not null*) contanins the time of the creation of the record.

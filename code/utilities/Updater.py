@@ -1,6 +1,6 @@
-import hashlib
-
 import pandas as pd
+import json
+import hashlib
 
 from parser.documentParser import parse_document
 from utilities.Downloader import Downloader
@@ -87,6 +87,11 @@ class Updater:
                         alias_list.append(alias)
             if mitre_aptname is None:
                 continue
+            report_hash = hashlib.sha1(json.dumps(current_row.to_dict()).encode('utf-8')).hexdigest()
+            report_id = self.db.insert_report(report_hash, current_row["description"], "", "mitre_galaxy")
+            self.db.insert_apt_report_relation(mitre_aptname, report_id)
+            self.db.connection.commit()
+
             for alias in alias_list:
                 self.db.insert_alias(mitre_aptname, alias)
                 self.db.insert_alias(mitre_aptname, clean_string(alias))
@@ -94,15 +99,15 @@ class Updater:
             for country_elem in country_search.iterrows():
                 current_country = country_elem[1]
                 self.db.insert_organization(current_country["name"].lower())
-                self.db.insert_apt_cos(mitre_aptname, current_country["name"].lower(), "suspected state sponsor")
+                self.db.insert_report_cos(report_id, current_country["name"].lower(), "suspected state sponsor")
             self.db.insert_organization(str(current_row["cfr-suspected-state-sponsor"]).lower())
-            self.db.insert_apt_cos(mitre_aptname, current_row["cfr-suspected-state-sponsor"], "suspected state sponsor")
+            self.db.insert_report_cos(report_id, current_row["cfr-suspected-state-sponsor"], "suspected state sponsor")
             for suspected_victim in current_row["cfr-suspected-victims"]:
-                self.db.insert_apt_cos(mitre_aptname, suspected_victim,
-                                       "suspected victims")
+                self.db.insert_report_cos(report_id, suspected_victim,
+                                       "suspected targets")
             for suspected_target in current_row["cfr-target-category"]:
-                self.db.insert_apt_cos(suspected_target, suspected_victim,
-                                       "suspected victims")
+                self.db.insert_report_cos(report_id, suspected_target,
+                                       "suspected targets")
             for current_url in current_row["meta"]["refs"]:
                 self.__insert_repo_from_url__(mitre_aptname, current_url, current_row["description"],
                                               "misp_galaxy_external_reference")
@@ -179,7 +184,7 @@ class Updater:
             for x in clean_aptname_list:
                 self.db.insert_alias(mitre_aptname, x)
             for x in apt_name_list:
-                self.db.insert_alias(mitre_aptname, x.lower())
+                self.db.insert_alias(mitre_aptname, str(x).lower())
             row_hash = hashlib.sha1((sheet_title + "_" + str(mitre_aptname)).encode('utf-8'))
             report_id = self.db.insert_report(row_hash.hexdigest(), "", "", "groups_and_operations_sheet")
             self.db.insert_apt_report_relation(mitre_aptname, report_id)
@@ -192,11 +197,11 @@ class Updater:
             for nation in extracted_nations:
                 if nation in self.country_alias:
                     self.db.insert_organization(nation)
-                    self.db.insert_apt_cos(mitre_aptname, nation)
+                    self.db.insert_report_cos(report_id, nation)
             extracted_sector = self.deepLM.get_target(target_string)
             for sector in extracted_sector:
                 self.db.insert_organization(sector)
-                self.db.insert_apt_cos(mitre_aptname, sector)
+                self.db.insert_report_cos(report_id, sector)
 
     def aptGroupsOperations_update(self):
         for key in self.go_parser.sheets:

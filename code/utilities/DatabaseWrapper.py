@@ -29,7 +29,7 @@ class DatabaseWrapper:
         self.cursor.execute(full_query)
 
     def insert_report(self, hash_value, description, url, source, keywords_list=[]):
-        base_query = """ INSERT INTO "REPORTS" ("hash","description","url","source") VALUES (%s,%s,%s,%s)
+        base_query = """ INSERT INTO "REPORT" ("hash","description","url","source") VALUES (%s,%s,%s,%s)
         ON CONFLICT ON CONSTRAINT "REPORTS_pkey"
         DO NOTHING
         RETURNING "report_id";"""
@@ -43,14 +43,14 @@ class DatabaseWrapper:
         except psycopg2.IntegrityError as ie:
             if """Key ("URL")""" in ie.args[0]:
                 self.connection.commit()
-                base_query = """SELECT "hash","report_id" FROM "REPORTS" WHERE "url"=%s"""
+                base_query = """SELECT "hash","report_id" FROM "REPORT" WHERE "url"=%s"""
                 full_query = self.cursor.mogrify(base_query, [url.lower()])
                 self.cursor.execute(full_query)
                 report_data = self.cursor.fetchone()
                 report_hash = report_data[0]
                 report_id = report_data[1]
                 if (report_hash != hash_value.lower()):
-                    base_query = """update "REPORTS" set "hash"=%s where "url"=%s;"""
+                    base_query = """update "REPORT" set "hash"=%s where "url"=%s;"""
                     full_query = self.cursor.mogrify(base_query, (hash_value.lower(), url.lower()))
                     self.cursor.execute(full_query)
                     self.connection.commit()
@@ -58,13 +58,13 @@ class DatabaseWrapper:
                 report_id = None
         if report_id is None:
             self.connection.commit()
-            base_query = """SELECT "report_id" FROM "REPORTS" WHERE "hash"=%s"""
+            base_query = """SELECT "report_id" FROM "REPORT" WHERE "hash"=%s"""
             full_query = self.cursor.mogrify(base_query, [hash_value.lower()])
             self.cursor.execute(full_query)
             report_id = self.cursor.fetchone()
         if report_id is None:
             self.connection.commit()
-            base_query = """SELECT "report_id" FROM "REPORTS" WHERE "url"=%s"""
+            base_query = """SELECT "report_id" FROM "REPORT" WHERE "url"=%s"""
             full_query = self.cursor.mogrify(base_query, [url.lower()])
             self.cursor.execute(full_query)
             report_id = self.cursor.fetchone()
@@ -72,7 +72,7 @@ class DatabaseWrapper:
             report_id = report_id[0]
         self.connection.commit()
         for keyword in keywords_list:
-            base_query = """SELECT "apt_name" FROM "KEYWORDS" WHERE "keyword"=%s"""
+            base_query = """SELECT "apt_name" FROM "KEYWORD" WHERE "keyword"=%s"""
             full_query = self.cursor.mogrify(base_query, [keyword.lower()])
             self.cursor.execute(full_query)
             apt_name = self.cursor.fetchone()
@@ -87,7 +87,7 @@ class DatabaseWrapper:
             if hashes[key] is not None:
                 if ("•" in hashes[key]):
                     hashes[key] = hashes[key].replace("•", "")
-        base_query = """ INSERT INTO "SAMPLES" ("md5","sha1","sha256","sha512")
+        base_query = """ INSERT INTO "SAMPLE" ("md5","sha1","sha256","sha512")
             VALUES (%s,%s,%s,%s)
             ON CONFLICT DO NOTHING
             RETURNING "sample_id" """
@@ -99,7 +99,7 @@ class DatabaseWrapper:
         result = self.cursor.fetchone()
         if (result is None):
             self.connection.commit()
-            base_query = """SELECT "sample_id" FROM "SAMPLES" WHERE"""
+            base_query = """SELECT "sample_id" FROM "SAMPLE" WHERE"""
             for key in hashes:
                 if (hashes[key] is not None):
                     base_query += (""" \"""" + key.lower() + """\"=%s""")
@@ -113,7 +113,7 @@ class DatabaseWrapper:
         if isinstance(hashes, pd.DataFrame):
             if hashes.empty:
                 return
-        base_query = """SELECT * FROM "SAMPLES" WHERE"""
+        base_query = """SELECT * FROM "SAMPLE" WHERE"""
         result_list = []
         for key in hashes:
             if hashes[key] is None:
@@ -135,18 +135,18 @@ class DatabaseWrapper:
             for elem in result_list[1:]:
                 current_sample_id = elem[0]
                 try:
-                    partial_update_relation = """UPDATE "SAMPLE_REPORT"
+                    partial_update_relation = """UPDATE "REPORT_SAMPLE"
                                     SET "sample_id"=%s WHERE "sample_id"=%s;"""
                     full_update_relation = self.cursor.mogrify(partial_update_relation, [sample_id, current_sample_id])
                     self.cursor.execute(full_update_relation)
                 except IntegrityError as e:
                     self.connection.commit()
                     continue
-                partial_update_relation = """DELETE FROM "SAMPLE_REPORT" WHERE "sample_id"=%s;"""
+                partial_update_relation = """DELETE FROM "REPORT_SAMPLE" WHERE "sample_id"=%s;"""
                 full_update_relation = self.cursor.mogrify(partial_update_relation, [current_sample_id])
                 self.cursor.execute(full_update_relation)
                 self.connection.commit()
-                parametric_delete_query = """DELETE FROM "SAMPLES" WHERE "sample_id"=%s;"""
+                parametric_delete_query = """DELETE FROM "SAMPLE" WHERE "sample_id"=%s;"""
                 delete_query = self.cursor.mogrify(parametric_delete_query, [current_sample_id])
                 self.cursor.execute(delete_query)
                 self.connection.commit()
@@ -154,7 +154,7 @@ class DatabaseWrapper:
         if (len(result_list) > 0):
             first_element = result_list.pop(0)
             sample_id = first_element[0]
-            partial_update_query = """UPDATE "SAMPLES" SET "md5"=%s,"sha1"=%s,"sha256"=%s,"sha512"=%s
+            partial_update_query = """UPDATE "SAMPLE" SET "md5"=%s,"sha1"=%s,"sha256"=%s,"sha512"=%s
             WHERE "sample_id"=%s;"""
             update_query = self.cursor.mogrify(partial_update_query,
                                                [hashes["md5"], hashes["sha1"], hashes["sha256"], hashes["sha512"],
@@ -166,14 +166,14 @@ class DatabaseWrapper:
             self.connection.commit()
 
     def insert_unknown_report(self, hash_value, description, url, source):
-        base_query = """ INSERT INTO "UNKNOWN_REPORTS" ("hash","description","url","source") VALUES (%s,%s,%s,%s)
+        base_query = """ INSERT INTO "UNKNOWN_REPORT" ("hash","description","url","source") VALUES (%s,%s,%s,%s)
         ON CONFLICT DO NOTHING;"""
         full_query = self.cursor.mogrify(base_query,
                                          (hash_value.lower(), description.lower(), url.lower(), source.lower()))
         self.cursor.execute(full_query)
 
     def insert_sample_report_relation(self, sample_id, report_id):
-        base_query = """INSERT INTO "SAMPLE_REPORT" ("sample_id", "report_id")
+        base_query = """INSERT INTO "REPORT_SAMPLE" ("sample_id", "report_id")
         VALUES(%s,%s)
         ON CONFLICT DO NOTHING;"""
         full_query = self.cursor.mogrify(base_query, (sample_id, report_id))
@@ -194,14 +194,14 @@ class DatabaseWrapper:
         self.cursor.execute(full_query)
 
     def insert_alias(self, apt_name, alias):
-        base_query = """ INSERT INTO "KEYWORDS" ("keyword","apt_name","is_alias") VALUES (%s,%s,%s)
+        base_query = """ INSERT INTO "KEYWORD" ("keyword","apt_name","is_alias") VALUES (%s,%s,%s)
             ON CONFLICT ON CONSTRAINT "KEYWORDS_pkey"
-            DO UPDATE SET "is_alias"=EXCLUDED."is_alias" WHERE "KEYWORDS"."is_alias"=False;"""
+            DO UPDATE SET "is_alias"=EXCLUDED."is_alias" WHERE "KEYWORD"."is_alias"=False;"""
         full_query = self.cursor.mogrify(base_query, (alias.lower(), apt_name.lower(), True))
         self.cursor.execute(full_query)
 
     def get_keywords(self):
-        query = """ SELECT "keyword" FROM "KEYWORDS";"""
+        query = """ SELECT "keyword" FROM "KEYWORD";"""
         self.cursor.execute(query)
         result_query = self.cursor.fetchall()
         keywords_set = set()
@@ -210,14 +210,14 @@ class DatabaseWrapper:
         return keywords_set
 
     def get_samples(self):
-        query = """ SELECT "md5","sha1","sha256","sha512" FROM "SAMPLES";"""
+        query = """ SELECT "md5","sha1","sha256","sha512" FROM "SAMPLE";"""
         self.cursor.execute(query)
         result_query = self.cursor.fetchall()
         result_df = pd.DataFrame(result_query, columns=["md5", "sha1", "sha256", "sha512"])
         return result_df
 
     def get_report_hashes(self):
-        self.cursor.execute("""SELECT "hash" FROM "REPORTS" """)
+        self.cursor.execute("""SELECT "hash" FROM "REPORT" """)
         query_result = self.cursor.fetchall()
         old_reports = set()
         for elem in query_result:
@@ -240,7 +240,7 @@ class DatabaseWrapper:
         return result_df
 
     def get_all_techniques(self):
-        self.cursor.execute("""SELECT "mitre_id" FROM "TECHNIQUES" """)
+        self.cursor.execute("""SELECT "mitre_id" FROM "TECHNIQUE" """)
         query_result = self.cursor.fetchall()
         old_techniques = set()
         for elem in query_result:
@@ -248,7 +248,7 @@ class DatabaseWrapper:
         return old_techniques
 
     def insert_technique(self, techniques_dict):
-        sql = "INSERT INTO \"TECHNIQUES\" (\"" + "\", \"".join(techniques_dict.keys()) + "\") VALUES (" + ", ".join(
+        sql = "INSERT INTO \"TECHNIQUE\" (\"" + "\", \"".join(techniques_dict.keys()) + "\") VALUES (" + ", ".join(
             ["%(" + k + ")s" for k in techniques_dict]) + ") ON CONFLICT ON CONSTRAINT \"TECHNIQUES_pkey\" DO NOTHING;"
         full_query = self.cursor.mogrify(sql, techniques_dict)
         self.cursor.execute(full_query)
@@ -309,23 +309,23 @@ class DatabaseWrapper:
         self.cursor.execute(full_query)
         self.connection.commit()
 
-    def insert_apt_cos(self, apt_name, cos_list, relation=None):
+    def insert_report_cos(self, report_id, cos_list, relation=None):
         cos_name = str(cos_list)
         if relation is None:
-            base_query = """ INSERT INTO "APT_COS" ("apt_name","country_organization_sector") VALUES (%s,%s)
+            base_query = """ INSERT INTO "REPORT_COS" ("report_id","country_organization_sector") VALUES (%s,%s)
                 ON CONFLICT DO NOTHING;"""
-            full_query = self.cursor.mogrify(base_query, (apt_name, cos_name))
+            full_query = self.cursor.mogrify(base_query, (report_id, cos_name))
             self.cursor.execute(full_query)
             self.connection.commit()
         else:
             try:
-                base_query = """DELETE FROM "APT_COS" WHERE "apt_name"=%s and "country_organization_sector"=%s and "relation"='unknown';"""
-                full_query = self.cursor.mogrify(base_query, (apt_name, cos_name))
+                base_query = """DELETE FROM "REPORT_COS" WHERE "report_id"=%s and "country_organization_sector"=%s and "relation"='unknown';"""
+                full_query = self.cursor.mogrify(base_query, (report_id, cos_name))
                 self.cursor.execute(full_query)
                 self.connection.commit()
-                base_query = """ INSERT INTO "APT_COS" ("apt_name","country_organization_sector","relation") VALUES (%s,%s,%s)
+                base_query = """ INSERT INTO "REPORT_COS" ("report_id","country_organization_sector","relation") VALUES (%s,%s,%s)
                     ON CONFLICT DO NOTHING;"""
-                full_query = self.cursor.mogrify(base_query, (apt_name, cos_name, relation))
+                full_query = self.cursor.mogrify(base_query, (report_id, cos_name, relation))
                 self.cursor.execute(full_query)
                 self.connection.commit()
             except psycopg2.IntegrityError as ie:

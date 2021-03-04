@@ -1,12 +1,14 @@
-from deeppavlov import build_model, configs
+# from deeppavlov import build_model, configs
 from nltk import word_tokenize, pos_tag
 from nltk.stem import WordNetLemmatizer
+from transformers import pipeline
 
 
 class deepLearningModel:
     def __init__(self):
-        self.model = build_model(configs.squad.squad, download=True)
+        # self.model = build_model(configs.squad.squad, download=True)
         # self.model = ""
+        self.model = pipeline(task="question-answering", model="ktrapeznikov/albert-xlarge-v2-squad-v2")
         self.stopwords = set(
             ["organizations", "sectors", "entities", "organization", "sector", "entity", "actor", "actors", "target",
              "targets", "compromises", "compromise", "threat", "threats", "computer", "computers", "network",
@@ -29,9 +31,17 @@ class deepLearningModel:
         return list(set(cleaned_list))
 
     def get_target(self, text):
-        extracted_target = self.model([text], ['Which are the targets?'])[0][0]
+        # extracted_target = self.model([text], ['Which are the targets?'])[0][0]
+        if(len(text)>0):
+            extracted_target = self.model(question='Which are the targets?', context=text.replace("â€”", " \' "))["answer"]
+        else:
+            extracted_target = ''
         return self.__single_target_extractor(extracted_target)
 
     def get_nations(self, text):
-        extracted_nations = self.model([text], ['Which are the attacked countries?'])[0][0]
+        # extracted_nations = self.model([text], ['Which are the attacked countries?'])[0][0]
+        if(len(text)>0):
+            extracted_nations = self.model(question='Which are the attacked countries?', context=text.replace("â€”", " \' "))["answer"]
+        else:
+            extracted_nations = ''
         return self.__single_target_extractor(extracted_nations)

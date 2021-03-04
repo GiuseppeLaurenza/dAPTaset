@@ -12,6 +12,6 @@ class mispGalaxyParser:
         self.df_threat[
             [0, 'attribution-confidence', 'capabilities', 'cfr-suspected-state-sponsor', 'cfr-suspected-victims',
              'cfr-target-category', 'cfr-type-of-incident', 'country', 'mode-of-operation', 'motive', 'refs',
-             'since', 'synonyms', 'victimology']] = self.df_threat["meta"].apply(pd.Series)
+             'since', 'synonyms', 'victimology','spoken-language', 'suspected-victims', 'threat-actor-classification']] = self.df_threat["meta"].apply(pd.Series)
         self.df_threat = self.df_threat.drop([0], 1)
         self.df_threat = self.df_threat.fillna("")

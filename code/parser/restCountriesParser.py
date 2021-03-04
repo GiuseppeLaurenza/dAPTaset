@@ -15,13 +15,17 @@ class restCountriesParser:
     def __extract_country_data(self, elem):
         lemmatizer = WordNetLemmatizer()
         result = []
-        if (elem["demonym"].lower() == "british"):
-            result.append("uk")
-        elif elem["demonym"].lower() == "american":
-            if (elem["nativeName"] == "United States"):
-                result.append("usa")
-                result.append("u.s.")
-            del elem["demonym"]
+        try:
+            if (elem.get("denonum","").lower() == "british"):
+                result.append("uk")
+            elif elem.get("denonum","").lower() == "american":
+                if (elem.get("nativeName","") == "United States"):
+                    result.append("usa")
+                    result.append("u.s.")
+                del elem["demonym"]
+        except Exception as e:
+            print(e)
+            print(elem)
         for key in elem.index:
             if isinstance(elem[key], list):
                 for x in elem[key]:

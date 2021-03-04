@@ -23,14 +23,15 @@ if __name__ == '__main__':
     cve_parser = cveParser(config["Paths"]["cve"])
     country_parser = restCountriesParser(config["RestCountries"]["url"])
     galaxy_parser = mispGalaxyParser(config["mispGalaxy"]["threat_actor_url"])
+    # galaxy_parser = None
     updater = Updater(db, mitre_parser, go_parser, aptnotes_parser, vt_parser, ms_parser, cve_parser, country_parser,
                       galaxy_parser,
                       config["Paths"]["temp"])
-    updater.mitre_update()
-    updater.misp_galaxy_update()
+    # updater.mitre_update()
+    # updater.misp_galaxy_update()
     updater.aptGroupsOperations_update()
-    updater.aptnotes_update()
-    updater.clean_hashes()
-    updater.software_search()
-    updater.clean_network()
+    # updater.aptnotes_update()
+    # updater.clean_hashes()
+    # updater.software_search()
+    # updater.clean_network()
     print("END")

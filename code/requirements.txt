@@ -102,7 +102,7 @@ ptyprocess==0.7.0; sys_platform != "win32" and python_version >= "3.7" and os_na
 py==1.10.0; python_version >= "3.6" and python_full_version < "3.0.0" and implementation_name == "pypy" or implementation_name == "pypy" and python_version >= "3.6" and python_full_version >= "3.4.0"
 pycparser==2.20; python_version >= "3.6" and python_full_version < "3.0.0" or python_full_version >= "3.4.0" and python_version >= "3.6"
 pygments==2.8.0; python_version >= "3.7"
-pyjwt==2.0.1; python_version >= "3.6"
+pyjwt==2.4.0; python_version >= "3.6"
 pyparsing==2.4.7; python_full_version >= "3.6.0" and python_version >= "3.6"
 pypdf2==1.26.0
 pyperclip==1.8.2; python_version >= "3.6"
